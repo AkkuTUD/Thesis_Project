@@ -1,0 +1,1 @@
+FROM registry.roqs.basf.net/base-images/postgres:latest

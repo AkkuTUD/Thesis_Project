@@ -1,0 +1,13 @@
+services:
+
+
+  flask:
+    container_name: xai_dofc_validation_flask
+    build:
+      context: ./flask
+      dockerfile: Dockerfile
+      # args:
+      #   var1: "value1"
+    image: registry.roqs.basf.net/xai_dofc_validation/xai_dofc_validation_flask
+    ports:
+      - "5000:5000"
