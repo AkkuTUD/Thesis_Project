@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div id="dashboard">
+
+<div class="header">
+    <a href="{{ url_for('index') }}" class="logo">Model Validation App</a>
+    <div class="page-header">
+      <div class="header-right">
+        <a href="{{ url_for('animal_split_2_cls') }}">Animal Split(2 classes)</a>
+        <a href="{{ url_for('tiles_split_2_cls') }}">Random Split(2 classes)</a>
+        <a href="{{ url_for('tiles_split_9_cls') }}">Random Split(9 classes)</a>
+        <a href="{{ url_for('animal_split_9_cls') }}">Animal Split(9 classes)</a>
+        <a style="background-color: #ddd; color: black;" href="{{ url_for('dashboard') }}">Dashboard</a>
+    </div>
+    </div>
+</div>
+
+<div style="margin-left: 100px; margin-top: 50px;">Random_2_class(True Positive)</div><div id='random_2_chart_1_tp' class='chart'></div>
+<div style="margin-left: 100px;">Random_9_class(True Positive)</div><div id='random_9_chart_2_tp' class='chart'></div>
+<div style="margin-left: 100px;">Animal_2_class(True Positive)</div><div id='animal_2_chart_3_tp' class='chart'></div>
+<div style="margin-left: 100px;">Animal_9_class(True Positive)</div><div id='animal_9_chart_4_tp' class='chart'></div>
+
+<div style="margin-left: 100px;">Random_2_class(False Positive)</div><div id='random_2_chart_1_fp' class='chart'></div>
+<div style="margin-left: 100px;">Random_9_class(False Positive)</div><div id='random_9_chart_2_fp' class='chart'></div>
+<div style="margin-left: 100px;">Animal_2_class(False Positive)</div><div id='animal_2_chart_3_fp' class='chart'></div>
+<div style="margin-left: 100px;">Animal_9_class(False Positive)</div><div id='animal_9_chart_4_fp' class='chart'></div>
+
+<div style="margin-left: 100px;">Random_2_class(False Negative)</div><div id='random_2_chart_1_fn' class='chart'></div>
+<div style="margin-left: 100px;">Random_9_class(False Negative)</div><div id='random_9_chart_2_fn' class='chart'></div>
+<div style="margin-left: 100px;">Animal_2_class(False Negative)</div><div id='animal_2_chart_3_fn' class='chart'></div>
+<div style="margin-left: 100px;">Animal_9_class(False Negative)</div><div id='animal_9_chart_4_fn' class='chart'></div>
+
+</div>
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+  var graphs = {{graphJSON_random_2_tp | safe}};
+  Plotly.plot('random_2_chart_1_tp',graphs,{});
+  var graphs = {{graphJSON_random_9_tp | safe}};
+  Plotly.plot('random_9_chart_2_tp',graphs,{});
+  var graphs = {{graphJSON_animal_2_tp | safe}};
+  Plotly.plot('animal_2_chart_3_tp',graphs,{});
+  var graphs = {{graphJSON_animal_9_tp | safe}};
+  Plotly.plot('animal_9_chart_4_tp',graphs,{});
+  
+  var graphs = {{graphJSON_random_2_fp | safe}};
+  Plotly.plot('random_2_chart_1_fp',graphs,{});
+  var graphs = {{graphJSON_random_9_fp | safe}};
+  Plotly.plot('random_9_chart_2_fp',graphs,{});
+  var graphs = {{graphJSON_animal_2_fp | safe}};
+  Plotly.plot('animal_2_chart_3_fp',graphs,{});
+  var graphs = {{graphJSON_animal_9_fp | safe}};
+  Plotly.plot('animal_9_chart_4_fp',graphs,{});
+  
+  
+  var graphs = {{graphJSON_random_2_fn | safe}};
+  Plotly.plot('random_2_chart_1_fn',graphs,{});
+  var graphs = {{graphJSON_random_9_fn | safe}};
+  Plotly.plot('random_9_chart_2_fn',graphs,{});
+  var graphs = {{graphJSON_animal_2_fn | safe}};
+  Plotly.plot('animal_2_chart_3_fn',graphs,{});
+  var graphs = {{graphJSON_animal_9_fn | safe}};
+  Plotly.plot('animal_9_chart_4_fn',graphs,{});
+
+</script>
+
+{% endblock %}

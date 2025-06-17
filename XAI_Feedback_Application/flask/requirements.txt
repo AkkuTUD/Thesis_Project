@@ -1,6 +1,10 @@
 basf_auth~=2.0
-gunicorn~=21.2
+gunicorn~=22.0
 flask~=2.3
 flask-cors~=4.0
 nose2~=0.13.0
 requests
+psycopg2_binary==2.9.9
+plotly==5.18.0
+pandas==2.2.1
+flask_paginate==2023.10.24

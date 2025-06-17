@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<!-- <title>DOFC Validation</title>
+<nav class="dash">
+    <div class="nav-bg">
+            <ul class="dash_ul">
+                <li class="dash_li"><a href="{{ url_for('dashboard') }}" class="dash_a">Dashboard</a></li>
+            </ul>
+    </div>
+</nav> -->
+{% endblock %}
+
+{% block body %}
+
+<div class="header">
+    <a href="{{ url_for('index') }}" class="logo">Model Validation App</a>
+    <div class="page-header">
+        <div class="header-right">
+            <a href="{{ url_for('animal_split_2_cls') }}">Animal Split(2 classes)</a>
+            <a href="{{ url_for('tiles_split_2_cls') }}">Random Split(2 classes)</a>
+            <a href="{{ url_for('tiles_split_9_cls') }}">Random Split(9 classes)</a>
+            <a href="{{ url_for('animal_split_9_cls') }}">Animal Split(9 classes)</a>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        </div>
+    </div>
+</div>
+<div class="user"><b>Hello {{username}}!!</b></div>
+  
+<!-- <div id="Dashboard" class="tabcontent">
+    <h3>Dashboard</h3>
+    <p>Dashboard.</p>
+</div> -->
+
+<script>
+    function openPage(pageName,elmnt,color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+    }
+    document.getElementById("defaultOpen").click();
+    var submit = document.getElementsByName('submit');
+    submit.onclick = function() {
+        alert("Button pressed!");
+    }
+</script>
+
+{% endblock %}

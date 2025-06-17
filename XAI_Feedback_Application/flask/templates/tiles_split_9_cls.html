@@ -1,0 +1,88 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main.css') }}">
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('index') }}" class="logo">Model Validation App</a>
+        <div class="page-header">
+            <div class="header-right">
+                <a href="{{ url_for('animal_split_2_cls') }}">Animal Split(2 classes)</a>
+                <a href="{{ url_for('tiles_split_2_cls') }}">Random Split(2 classes)</a>
+                <a style="background-color: #ddd; color: black;" href="{{ url_for('tiles_split_9_cls') }}">Random Split(9 classes)</a>
+                <a href="{{ url_for('animal_split_9_cls') }}">Animal Split(9 classes)</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            </div>
+        </div>
+    </div>
+    <div id="tabs">
+        <div id="menu">
+            <a class="tablink" href="{{ url_for('tiles_split_9_cls_FP') }}">False Positive</a>
+            <a class="tablink" style="background-color: black;" href="{{ url_for('tiles_split_9_cls') }}">True Positive</a>
+            <a class="tablink" href="{{ url_for('tiles_split_9_cls_FN') }}">False Negative</a>
+        </div>
+    </div>
+    <div id="TP">
+    {{pagination.links}}
+        <table>
+            {% for row in data_TP %}
+                <tr class="plots">
+                    <!-- <td id="id" name="id">{{ row[0] }}</td> -->
+                    <td>
+                        <img src="data:image/jpeg;base64,{{ row[1] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td>
+                        <img src="data:image/jpeg;base64,{{ row[6] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td class="image_td">
+                        <img src="data:image/jpeg;base64,{{ row[7] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td class="image_td">
+                        <img src="data:image/jpeg;base64,{{ row[8] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td>
+                        <img src="data:image/jpeg;base64,{{ row[9] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td>
+                        <img src="data:image/jpeg;base64,{{ row[10] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td>
+                        <img src="data:image/jpeg;base64,{{ row[11] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td>
+                        <img src="data:image/jpeg;base64,{{ row[12] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td>
+                        <img src="data:image/jpeg;base64,{{ row[13] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                    <td>
+                        <img src="data:image/jpeg;base64,{{ row[14] }}" alt=""  id="imgslot" class="imgslot"/></div>
+                    </td>
+                </tr>
+                <tr class="feed">
+                    <th class="feedback">Feedback</th>
+                    <td id="fb" name="fb" class="feedback">{{ row[15] }}</td>  
+                    <form action="{{ url_for('add_feedback', id=row[0]) }}" method="post">
+                        <td class="feedback"><SELECT id="feedback" name="feedback">
+                            <option disabled selected value> -- select an option -- </option>
+                        {% for item in feedbackList %}
+                            <option value="{{ item[0] }}">{{ item[0] }}</option>
+                        {% endfor %}
+                        </SELECT>
+                        <input type = "submit" name = "submit" value = "Submit" />
+                        </td>
+                    </form>
+                    <form action="{{ url_for('update_feedback', id=row[0]) }}" method="post">
+                        <td class="feedback">
+                        <input type="text" id="feedback" name="feedback" autocomplete="off" placeholder="Feedback" />
+                        <input type = "submit" name = "submit" value = "Update" />
+                        </td>
+                    </form>    
+                </tr>
+            {% endfor %}   
+        </table>
+    </div>
+    
+</body>
+</html>
