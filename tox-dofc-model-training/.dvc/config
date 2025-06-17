@@ -1,0 +1,13 @@
+[core]
+    check_update = false
+    analytics = false
+    remote = jisap-basf
+    autostage = true
+[cache]
+    type = hardlink, symlink
+['remote "jisap-basf"']
+    url = https://jisap.basf.net:443/remote?remote=8812
+    auth = custom
+    custom_auth_header = X-Token
+    ssl_verify = False
+    read_timeout = 1000

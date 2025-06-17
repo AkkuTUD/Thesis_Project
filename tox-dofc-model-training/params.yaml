@@ -1,0 +1,11 @@
+split:
+    val_percent: 80
+    # random_seed: 2300
+train:
+    img: 1280
+    batch: 6
+    epochs: 25
+    workers: 4
+    data: "dofc.yaml"
+    weights: "yolov5x6.pt"
+    hyp: "dofc.scratch.yaml"

@@ -1,0 +1,26 @@
+stages:
+  - reproduce
+
+reproduce:
+  image: registry.roqs.basf.net/jisap_docker_pytorch/jisap-pt_1_10:latest
+  tags:
+    # - tox-compute1
+    - ccsp
+  rules:
+    - when: manual
+
+  script:
+    - |
+      source /JISAP/venv/bin/activate
+      pip --default-timeout=3000 install -q -r requirements.txt
+      (git clone https://github.com/ultralytics/yolov5.git|| true) && cd yolov5 && git pull && cd ..
+      echo "jisap-cli $(jisap-cli version)"
+      bash src/reproduce.sh
+      sha=$(git log -n1 --format=format:"%H")
+      echo "$CI_COMMIT_MESSAGE" | jisap-cli release --tag-name "$(cat runs/train/model.version | cut -d';' -f 1)" --name "trained models $(cat runs/train/model.version | cut -d';' -f 1)" --ref "$sha" --link "runs/train/exp/weights/last.pt" --link "runs/train/exp/weights/best.pt"  --link "dofc.yaml" || echo "No new release has been created"
+
+include:
+  - project: 'jisap/backend-services/appstoredeployment'
+    ref: master
+    file: 'reproduce-step-template-2004_v4.yml'
+  # see https://gitlab.roqs.basf.net/jisap/backend-services/appstoredeployment/-/blob/master/reproduce-step-template-2004_v4.yml?ref_type=heads

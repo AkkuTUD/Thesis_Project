@@ -1,0 +1,13 @@
+/venv
+/data
+/tiles_data
+/yolov5x6.pt
+/runs
+training_data/labels.cache
+/yolov5l6.pt
+/yolov5s.pt
+/yolov5s6.pt
+/report.md
+/yolov5
+/README.md
+/Arial.ttf

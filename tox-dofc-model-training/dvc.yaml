@@ -1,0 +1,48 @@
+stages:
+  tif2train_val_png:
+    cmd: src/tif2train_val_png.sh
+    params:
+      - split
+    deps:
+      - src/tif2train_val_png.sh
+      - tiles_data/images
+    outs:
+      - training_data/images/training
+      - training_data/images/validation
+  absolute2relative_coor:
+    cmd: src/abs2rel.sh
+    deps:
+      - src/abs2rel.sh
+      - tiles_data/labels
+    outs:
+      - training_data/labels
+  train:
+    cmd: src/train.sh
+    deps:
+      - yolov5x6.pt
+      - training_data/images
+      - training_data/labels
+      - dofc.scratch.yaml
+      - dofc.yaml
+      - src/res2yaml.sh
+      - src/launch.py
+      - src/train.sh
+    params:
+      - train
+    plots:
+      - runs/train/exp_results.csv
+    metrics:
+      - runs/train/exp_results_last.yaml
+    outs:
+      - runs/train/exp
+      - runs/train/model.version
+  report:
+    cmd: src/create_report.sh
+    deps:
+      - runs/train/exp
+      - runs/train/exp_results.csv
+      - runs/train/model.version
+      - src/create_report.sh
+    outs:
+      - report.md
+      - README.md

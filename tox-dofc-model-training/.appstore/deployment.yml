@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: 
+    spec:
+      containers:
+      - image: registry.roqs.basf.net//:1211182
+        name: 
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            memory: 5000Mi
+          requests:
+            memory: 200Mi
+        securityContext:
+          runAsGroup: 1000
+          runAsUser: 1000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: 
+spec:
+  ports:
+  - nodePort: 
+    port: 5000
+  selector:
+    app: 
+  type: NodePort

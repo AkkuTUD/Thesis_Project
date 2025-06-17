@@ -1,0 +1,8 @@
+train: ../training_data/images/training/
+val: ../training_data/images/validation/
+
+# number of classes
+nc: 9
+
+# class names
+names: ['Gland','Growing_Follicle','Growing_no_nucleus','Other_Follicle','Primordial_Follicle_1','Primordial_Follicle_1_no_nuc','Primordial_Follicle_2','Primordial_Follicle_2_no_nuc','Vessel']
